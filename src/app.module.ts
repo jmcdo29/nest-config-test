@@ -1,13 +1,18 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { BasicModule } from './basic/basic.module';
+import { TopPlainModule } from './top-plain/top-plain.module';
+import { TopDynModule } from './top-dyn/top-dyn.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot(),
-    BasicModule,
+    TopPlainModule,
+    TopDynModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: (config: ConfigService) => config,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService],
