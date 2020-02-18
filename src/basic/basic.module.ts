@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { BasicService } from './basic.service';
 import { ConfigModule } from '@nestjs/config';
-import { TopPlainService } from './top-plain.service';
 
 @Module({
   imports: [ConfigModule],
-  providers: [TopPlainService]
+  providers: [BasicService]
 })
-export class TopPlainModule {}
+export class BasicModule {}
